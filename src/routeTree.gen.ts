@@ -10,33 +10,308 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedAppRouteRouteImport } from './routes/_authenticated/_app/route'
+import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
+import { Route as AuthenticatedAppActivityRouteImport } from './routes/_authenticated/_app/activity'
+import { Route as AuthenticatedAppAiAssistantRouteImport } from './routes/_authenticated/_app/ai-assistant'
+import { Route as AuthenticatedAppAiInsightsRouteImport } from './routes/_authenticated/_app/ai-insights'
+import { Route as AuthenticatedAppAuditLogsRouteImport } from './routes/_authenticated/_app/audit-logs'
+import { Route as AuthenticatedAppDashboardRouteImport } from './routes/_authenticated/_app/dashboard'
+import { Route as AuthenticatedAppDepartmentsRouteImport } from './routes/_authenticated/_app/departments'
+import { Route as AuthenticatedAppEmissionFactorsRouteImport } from './routes/_authenticated/_app/emission-factors'
+import { Route as AuthenticatedAppEmissionsRouteImport } from './routes/_authenticated/_app/emissions'
+import { Route as AuthenticatedAppFacilitiesRouteImport } from './routes/_authenticated/_app/facilities'
+import { Route as AuthenticatedAppInitiativesRouteImport } from './routes/_authenticated/_app/initiatives'
+import { Route as AuthenticatedAppOrganizationRouteImport } from './routes/_authenticated/_app/organization'
+import { Route as AuthenticatedAppReportingPeriodsRouteImport } from './routes/_authenticated/_app/reporting-periods'
+import { Route as AuthenticatedAppReportsRouteImport } from './routes/_authenticated/_app/reports'
+import { Route as AuthenticatedAppScenariosRouteImport } from './routes/_authenticated/_app/scenarios'
+import { Route as AuthenticatedAppSettingsRouteImport } from './routes/_authenticated/_app/settings'
+import { Route as AuthenticatedAppTargetsRouteImport } from './routes/_authenticated/_app/targets'
+import { Route as AuthenticatedAppUsersRouteImport } from './routes/_authenticated/_app/users'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAppRouteRoute = AuthenticatedAppRouteRouteImport.update({
+  id: '/_app',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAppActivityRoute =
+  AuthenticatedAppActivityRouteImport.update({
+    id: '/activity',
+    path: '/activity',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppAiAssistantRoute =
+  AuthenticatedAppAiAssistantRouteImport.update({
+    id: '/ai-assistant',
+    path: '/ai-assistant',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppAiInsightsRoute =
+  AuthenticatedAppAiInsightsRouteImport.update({
+    id: '/ai-insights',
+    path: '/ai-insights',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppAuditLogsRoute =
+  AuthenticatedAppAuditLogsRouteImport.update({
+    id: '/audit-logs',
+    path: '/audit-logs',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppDashboardRoute =
+  AuthenticatedAppDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppDepartmentsRoute =
+  AuthenticatedAppDepartmentsRouteImport.update({
+    id: '/departments',
+    path: '/departments',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppEmissionFactorsRoute =
+  AuthenticatedAppEmissionFactorsRouteImport.update({
+    id: '/emission-factors',
+    path: '/emission-factors',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppEmissionsRoute =
+  AuthenticatedAppEmissionsRouteImport.update({
+    id: '/emissions',
+    path: '/emissions',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppFacilitiesRoute =
+  AuthenticatedAppFacilitiesRouteImport.update({
+    id: '/facilities',
+    path: '/facilities',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppInitiativesRoute =
+  AuthenticatedAppInitiativesRouteImport.update({
+    id: '/initiatives',
+    path: '/initiatives',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppOrganizationRoute =
+  AuthenticatedAppOrganizationRouteImport.update({
+    id: '/organization',
+    path: '/organization',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppReportingPeriodsRoute =
+  AuthenticatedAppReportingPeriodsRouteImport.update({
+    id: '/reporting-periods',
+    path: '/reporting-periods',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppReportsRoute = AuthenticatedAppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AuthenticatedAppRouteRoute,
+} as any)
+const AuthenticatedAppScenariosRoute =
+  AuthenticatedAppScenariosRouteImport.update({
+    id: '/scenarios',
+    path: '/scenarios',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppSettingsRoute =
+  AuthenticatedAppSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppTargetsRoute = AuthenticatedAppTargetsRouteImport.update({
+  id: '/targets',
+  path: '/targets',
+  getParentRoute: () => AuthenticatedAppRouteRoute,
+} as any)
+const AuthenticatedAppUsersRoute = AuthenticatedAppUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AuthenticatedAppRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/activity': typeof AuthenticatedAppActivityRoute
+  '/ai-assistant': typeof AuthenticatedAppAiAssistantRoute
+  '/ai-insights': typeof AuthenticatedAppAiInsightsRoute
+  '/audit-logs': typeof AuthenticatedAppAuditLogsRoute
+  '/dashboard': typeof AuthenticatedAppDashboardRoute
+  '/departments': typeof AuthenticatedAppDepartmentsRoute
+  '/emission-factors': typeof AuthenticatedAppEmissionFactorsRoute
+  '/emissions': typeof AuthenticatedAppEmissionsRoute
+  '/facilities': typeof AuthenticatedAppFacilitiesRoute
+  '/initiatives': typeof AuthenticatedAppInitiativesRoute
+  '/organization': typeof AuthenticatedAppOrganizationRoute
+  '/reporting-periods': typeof AuthenticatedAppReportingPeriodsRoute
+  '/reports': typeof AuthenticatedAppReportsRoute
+  '/scenarios': typeof AuthenticatedAppScenariosRoute
+  '/settings': typeof AuthenticatedAppSettingsRoute
+  '/targets': typeof AuthenticatedAppTargetsRoute
+  '/users': typeof AuthenticatedAppUsersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/activity': typeof AuthenticatedAppActivityRoute
+  '/ai-assistant': typeof AuthenticatedAppAiAssistantRoute
+  '/ai-insights': typeof AuthenticatedAppAiInsightsRoute
+  '/audit-logs': typeof AuthenticatedAppAuditLogsRoute
+  '/dashboard': typeof AuthenticatedAppDashboardRoute
+  '/departments': typeof AuthenticatedAppDepartmentsRoute
+  '/emission-factors': typeof AuthenticatedAppEmissionFactorsRoute
+  '/emissions': typeof AuthenticatedAppEmissionsRoute
+  '/facilities': typeof AuthenticatedAppFacilitiesRoute
+  '/initiatives': typeof AuthenticatedAppInitiativesRoute
+  '/organization': typeof AuthenticatedAppOrganizationRoute
+  '/reporting-periods': typeof AuthenticatedAppReportingPeriodsRoute
+  '/reports': typeof AuthenticatedAppReportsRoute
+  '/scenarios': typeof AuthenticatedAppScenariosRoute
+  '/settings': typeof AuthenticatedAppSettingsRoute
+  '/targets': typeof AuthenticatedAppTargetsRoute
+  '/users': typeof AuthenticatedAppUsersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/_app': typeof AuthenticatedAppRouteRouteWithChildren
+  '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
+  '/_authenticated/_app/activity': typeof AuthenticatedAppActivityRoute
+  '/_authenticated/_app/ai-assistant': typeof AuthenticatedAppAiAssistantRoute
+  '/_authenticated/_app/ai-insights': typeof AuthenticatedAppAiInsightsRoute
+  '/_authenticated/_app/audit-logs': typeof AuthenticatedAppAuditLogsRoute
+  '/_authenticated/_app/dashboard': typeof AuthenticatedAppDashboardRoute
+  '/_authenticated/_app/departments': typeof AuthenticatedAppDepartmentsRoute
+  '/_authenticated/_app/emission-factors': typeof AuthenticatedAppEmissionFactorsRoute
+  '/_authenticated/_app/emissions': typeof AuthenticatedAppEmissionsRoute
+  '/_authenticated/_app/facilities': typeof AuthenticatedAppFacilitiesRoute
+  '/_authenticated/_app/initiatives': typeof AuthenticatedAppInitiativesRoute
+  '/_authenticated/_app/organization': typeof AuthenticatedAppOrganizationRoute
+  '/_authenticated/_app/reporting-periods': typeof AuthenticatedAppReportingPeriodsRoute
+  '/_authenticated/_app/reports': typeof AuthenticatedAppReportsRoute
+  '/_authenticated/_app/scenarios': typeof AuthenticatedAppScenariosRoute
+  '/_authenticated/_app/settings': typeof AuthenticatedAppSettingsRoute
+  '/_authenticated/_app/targets': typeof AuthenticatedAppTargetsRoute
+  '/_authenticated/_app/users': typeof AuthenticatedAppUsersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/onboarding'
+    | '/activity'
+    | '/ai-assistant'
+    | '/ai-insights'
+    | '/audit-logs'
+    | '/dashboard'
+    | '/departments'
+    | '/emission-factors'
+    | '/emissions'
+    | '/facilities'
+    | '/initiatives'
+    | '/organization'
+    | '/reporting-periods'
+    | '/reports'
+    | '/scenarios'
+    | '/settings'
+    | '/targets'
+    | '/users'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/onboarding'
+    | '/activity'
+    | '/ai-assistant'
+    | '/ai-insights'
+    | '/audit-logs'
+    | '/dashboard'
+    | '/departments'
+    | '/emission-factors'
+    | '/emissions'
+    | '/facilities'
+    | '/initiatives'
+    | '/organization'
+    | '/reporting-periods'
+    | '/reports'
+    | '/scenarios'
+    | '/settings'
+    | '/targets'
+    | '/users'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/reset-password'
+    | '/_authenticated/_app'
+    | '/_authenticated/onboarding'
+    | '/_authenticated/_app/activity'
+    | '/_authenticated/_app/ai-assistant'
+    | '/_authenticated/_app/ai-insights'
+    | '/_authenticated/_app/audit-logs'
+    | '/_authenticated/_app/dashboard'
+    | '/_authenticated/_app/departments'
+    | '/_authenticated/_app/emission-factors'
+    | '/_authenticated/_app/emissions'
+    | '/_authenticated/_app/facilities'
+    | '/_authenticated/_app/initiatives'
+    | '/_authenticated/_app/organization'
+    | '/_authenticated/_app/reporting-periods'
+    | '/_authenticated/_app/reports'
+    | '/_authenticated/_app/scenarios'
+    | '/_authenticated/_app/settings'
+    | '/_authenticated/_app/targets'
+    | '/_authenticated/_app/users'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +323,226 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/_app': {
+      id: '/_authenticated/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedAppRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/onboarding': {
+      id: '/_authenticated/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/_app/activity': {
+      id: '/_authenticated/_app/activity'
+      path: '/activity'
+      fullPath: '/activity'
+      preLoaderRoute: typeof AuthenticatedAppActivityRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/ai-assistant': {
+      id: '/_authenticated/_app/ai-assistant'
+      path: '/ai-assistant'
+      fullPath: '/ai-assistant'
+      preLoaderRoute: typeof AuthenticatedAppAiAssistantRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/ai-insights': {
+      id: '/_authenticated/_app/ai-insights'
+      path: '/ai-insights'
+      fullPath: '/ai-insights'
+      preLoaderRoute: typeof AuthenticatedAppAiInsightsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/audit-logs': {
+      id: '/_authenticated/_app/audit-logs'
+      path: '/audit-logs'
+      fullPath: '/audit-logs'
+      preLoaderRoute: typeof AuthenticatedAppAuditLogsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/dashboard': {
+      id: '/_authenticated/_app/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedAppDashboardRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/departments': {
+      id: '/_authenticated/_app/departments'
+      path: '/departments'
+      fullPath: '/departments'
+      preLoaderRoute: typeof AuthenticatedAppDepartmentsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/emission-factors': {
+      id: '/_authenticated/_app/emission-factors'
+      path: '/emission-factors'
+      fullPath: '/emission-factors'
+      preLoaderRoute: typeof AuthenticatedAppEmissionFactorsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/emissions': {
+      id: '/_authenticated/_app/emissions'
+      path: '/emissions'
+      fullPath: '/emissions'
+      preLoaderRoute: typeof AuthenticatedAppEmissionsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/facilities': {
+      id: '/_authenticated/_app/facilities'
+      path: '/facilities'
+      fullPath: '/facilities'
+      preLoaderRoute: typeof AuthenticatedAppFacilitiesRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/initiatives': {
+      id: '/_authenticated/_app/initiatives'
+      path: '/initiatives'
+      fullPath: '/initiatives'
+      preLoaderRoute: typeof AuthenticatedAppInitiativesRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/organization': {
+      id: '/_authenticated/_app/organization'
+      path: '/organization'
+      fullPath: '/organization'
+      preLoaderRoute: typeof AuthenticatedAppOrganizationRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/reporting-periods': {
+      id: '/_authenticated/_app/reporting-periods'
+      path: '/reporting-periods'
+      fullPath: '/reporting-periods'
+      preLoaderRoute: typeof AuthenticatedAppReportingPeriodsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/reports': {
+      id: '/_authenticated/_app/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AuthenticatedAppReportsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/scenarios': {
+      id: '/_authenticated/_app/scenarios'
+      path: '/scenarios'
+      fullPath: '/scenarios'
+      preLoaderRoute: typeof AuthenticatedAppScenariosRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/settings': {
+      id: '/_authenticated/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedAppSettingsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/targets': {
+      id: '/_authenticated/_app/targets'
+      path: '/targets'
+      fullPath: '/targets'
+      preLoaderRoute: typeof AuthenticatedAppTargetsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/_app/users': {
+      id: '/_authenticated/_app/users'
+      path: '/users'
+      fullPath: '/users'
+      preLoaderRoute: typeof AuthenticatedAppUsersRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
   }
 }
 
+interface AuthenticatedAppRouteRouteChildren {
+  AuthenticatedAppActivityRoute: typeof AuthenticatedAppActivityRoute
+  AuthenticatedAppAiAssistantRoute: typeof AuthenticatedAppAiAssistantRoute
+  AuthenticatedAppAiInsightsRoute: typeof AuthenticatedAppAiInsightsRoute
+  AuthenticatedAppAuditLogsRoute: typeof AuthenticatedAppAuditLogsRoute
+  AuthenticatedAppDashboardRoute: typeof AuthenticatedAppDashboardRoute
+  AuthenticatedAppDepartmentsRoute: typeof AuthenticatedAppDepartmentsRoute
+  AuthenticatedAppEmissionFactorsRoute: typeof AuthenticatedAppEmissionFactorsRoute
+  AuthenticatedAppEmissionsRoute: typeof AuthenticatedAppEmissionsRoute
+  AuthenticatedAppFacilitiesRoute: typeof AuthenticatedAppFacilitiesRoute
+  AuthenticatedAppInitiativesRoute: typeof AuthenticatedAppInitiativesRoute
+  AuthenticatedAppOrganizationRoute: typeof AuthenticatedAppOrganizationRoute
+  AuthenticatedAppReportingPeriodsRoute: typeof AuthenticatedAppReportingPeriodsRoute
+  AuthenticatedAppReportsRoute: typeof AuthenticatedAppReportsRoute
+  AuthenticatedAppScenariosRoute: typeof AuthenticatedAppScenariosRoute
+  AuthenticatedAppSettingsRoute: typeof AuthenticatedAppSettingsRoute
+  AuthenticatedAppTargetsRoute: typeof AuthenticatedAppTargetsRoute
+  AuthenticatedAppUsersRoute: typeof AuthenticatedAppUsersRoute
+}
+
+const AuthenticatedAppRouteRouteChildren: AuthenticatedAppRouteRouteChildren = {
+  AuthenticatedAppActivityRoute: AuthenticatedAppActivityRoute,
+  AuthenticatedAppAiAssistantRoute: AuthenticatedAppAiAssistantRoute,
+  AuthenticatedAppAiInsightsRoute: AuthenticatedAppAiInsightsRoute,
+  AuthenticatedAppAuditLogsRoute: AuthenticatedAppAuditLogsRoute,
+  AuthenticatedAppDashboardRoute: AuthenticatedAppDashboardRoute,
+  AuthenticatedAppDepartmentsRoute: AuthenticatedAppDepartmentsRoute,
+  AuthenticatedAppEmissionFactorsRoute: AuthenticatedAppEmissionFactorsRoute,
+  AuthenticatedAppEmissionsRoute: AuthenticatedAppEmissionsRoute,
+  AuthenticatedAppFacilitiesRoute: AuthenticatedAppFacilitiesRoute,
+  AuthenticatedAppInitiativesRoute: AuthenticatedAppInitiativesRoute,
+  AuthenticatedAppOrganizationRoute: AuthenticatedAppOrganizationRoute,
+  AuthenticatedAppReportingPeriodsRoute: AuthenticatedAppReportingPeriodsRoute,
+  AuthenticatedAppReportsRoute: AuthenticatedAppReportsRoute,
+  AuthenticatedAppScenariosRoute: AuthenticatedAppScenariosRoute,
+  AuthenticatedAppSettingsRoute: AuthenticatedAppSettingsRoute,
+  AuthenticatedAppTargetsRoute: AuthenticatedAppTargetsRoute,
+  AuthenticatedAppUsersRoute: AuthenticatedAppUsersRoute,
+}
+
+const AuthenticatedAppRouteRouteWithChildren =
+  AuthenticatedAppRouteRoute._addFileChildren(
+    AuthenticatedAppRouteRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAppRouteRoute: typeof AuthenticatedAppRouteRouteWithChildren
+  AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAppRouteRoute: AuthenticatedAppRouteRouteWithChildren,
+  AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

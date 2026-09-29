@@ -1,0 +1,139 @@
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable/index";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
+const search = z.object({ mode: z.enum(["login", "register", "forgot"]).optional() });
+
+export const Route = createFileRoute("/auth")({
+  validateSearch: search,
+  head: () => ({
+    meta: [
+      { title: "Sign in — Verdant Ledger" },
+      { name: "description", content: "Sign in or create your Verdant Ledger account." },
+      { property: "og:title", content: "Sign in — Verdant Ledger" },
+      { property: "og:description", content: "Access your organization's carbon intelligence workspace." },
+    ],
+  }),
+  component: AuthPage,
+});
+
+function AuthPage() {
+  const { mode = "login" } = Route.useSearch();
+  const navigate = useNavigate();
+  const [busy, setBusy] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session) navigate({ to: "/dashboard", replace: true });
+    });
+  }, [navigate]);
+
+  const setMode = (m: "login" | "register" | "forgot") => navigate({ to: "/auth", search: { mode: m } });
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    try {
+      if (mode === "register") {
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: { emailRedirectTo: `${window.location.origin}/dashboard`, data: { full_name: name } },
+        });
+        if (error) throw error;
+        toast.success("Check your inbox to verify your email.");
+      } else if (mode === "forgot") {
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: `${window.location.origin}/reset-password`,
+        });
+        if (error) throw error;
+        toast.success("Password reset link sent.");
+      } else {
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        navigate({ to: "/dashboard", replace: true });
+      }
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Something went wrong");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function google() {
+    const r = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin + "/auth" });
+    if (r.error) toast.error("Google sign-in failed");
+    else if (!r.redirected) navigate({ to: "/dashboard", replace: true });
+  }
+
+  const title = mode === "register" ? "Create your account" : mode === "forgot" ? "Reset password" : "Welcome back";
+
+  return (
+    <div className="grid min-h-screen md:grid-cols-2">
+      <div className="hidden flex-col justify-between bg-sidebar p-10 text-sidebar-foreground md:flex">
+        <Link to="/" className="font-display text-lg">Verdant Ledger</Link>
+        <blockquote className="max-w-md">
+          <p className="font-display text-3xl leading-tight">
+            "What gets measured, traced and audited gets reduced."
+          </p>
+          <p className="mt-4 font-mono text-xs uppercase tracking-widest text-sidebar-primary">
+            Carbon intelligence platform
+          </p>
+        </blockquote>
+        <span className="text-xs text-sidebar-foreground/50">GHG Protocol aligned</span>
+      </div>
+      <div className="flex items-center justify-center p-6">
+        <form onSubmit={submit} className="w-full max-w-sm space-y-5">
+          <h1 className="text-3xl">{title}</h1>
+          {mode === "register" && (
+            <div className="space-y-2">
+              <Label htmlFor="name">Full name</Label>
+              <Input id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+            </div>
+          )}
+          <div className="space-y-2">
+            <Label htmlFor="email">Work email</Label>
+            <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          </div>
+          {mode !== "forgot" && (
+            <div className="space-y-2">
+              <div className="flex justify-between">
+                <Label htmlFor="pw">Password</Label>
+                {mode === "login" && (
+                  <button type="button" onClick={() => setMode("forgot")} className="text-xs text-muted-foreground hover:underline">
+                    Forgot?
+                  </button>
+                )}
+              </div>
+              <Input id="pw" type="password" minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} required />
+            </div>
+          )}
+          <Button type="submit" className="w-full" disabled={busy}>
+            {mode === "register" ? "Create account" : mode === "forgot" ? "Send reset link" : "Sign in"}
+          </Button>
+          {mode !== "forgot" && (
+            <Button type="button" variant="outline" className="w-full" onClick={google}>
+              Continue with Google
+            </Button>
+          )}
+          <p className="text-center text-sm text-muted-foreground">
+            {mode === "register" ? (
+              <>Already have an account? <button type="button" className="text-foreground underline" onClick={() => setMode("login")}>Sign in</button></>
+            ) : (
+              <>New here? <button type="button" className="text-foreground underline" onClick={() => setMode("register")}>Create an account</button></>
+            )}
+          </p>
+        </form>
+      </div>
+    </div>
+  );
+}
