@@ -42,7 +42,7 @@ function Departments() {
     const { error } = await supabase.from("departments").insert({
       organization_id: orgId!, name: name.trim(), cost_center: cc || null, facility_id: fac === "none" ? null : fac,
     });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setName(""); setCc(""); setFac("none"); refresh();
   }
   async function remove(id: string) {

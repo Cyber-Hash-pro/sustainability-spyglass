@@ -49,7 +49,7 @@ function OrgPage() {
   async function save(e: React.FormEvent) {
     e.preventDefault();
     const { error } = await supabase.from("organizations").update({ ...form, updated_at: new Date().toISOString() }).eq("id", orgId!);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Organization updated");
     qc.invalidateQueries();
   }

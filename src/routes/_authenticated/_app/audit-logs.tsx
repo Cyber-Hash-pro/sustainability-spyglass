@@ -30,7 +30,7 @@ function Audit() {
 
   const label = (r: { after_data: unknown; before_data: unknown }) => {
     const d = (r.after_data ?? r.before_data) as Record<string, unknown> | null;
-    return (d?.name as string) ?? (d?.role as string) ?? "";
+    return (d?.["name"] as string) ?? (d?.["role"] as string) ?? "";
   };
 
   return (

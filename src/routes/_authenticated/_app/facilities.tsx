@@ -46,14 +46,14 @@ function Facilities() {
   async function create(e: React.FormEvent) {
     e.preventDefault();
     const share = Number(f.ownership_share);
-    if (share < 0 || share > 100) return toast.error("Ownership share must be 0–100%");
+    if (share < 0 || share > 100) { toast.error("Ownership share must be 0–100%"); return; }
     const { error } = await supabase.from("facilities").insert({
       organization_id: orgId!, name: f.name.trim(), code: f.code || null, facility_type: f.facility_type,
       city: f.city || null, country: f.country || null, within_boundary: f.within_boundary,
       floor_area_m2: f.floor_area_m2 ? Number(f.floor_area_m2) : null,
       headcount: f.headcount ? Number(f.headcount) : null, ownership_share: share,
     });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Facility added");
     setOpen(false); setF(empty); refresh();
   }

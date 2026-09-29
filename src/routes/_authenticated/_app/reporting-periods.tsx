@@ -35,9 +35,9 @@ function Periods() {
 
   async function add(e: React.FormEvent) {
     e.preventDefault();
-    if (f.end_date <= f.start_date) return toast.error("End date must be after start date");
+    if (f.end_date <= f.start_date) { toast.error("End date must be after start date"); return; }
     const { error } = await supabase.from("reporting_periods").insert({ organization_id: orgId!, ...f });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setF({ name: "", start_date: "", end_date: "" }); refresh();
   }
   async function update(id: string, patch: { status?: "open" | "locked" | "closed"; is_baseline?: boolean }) {

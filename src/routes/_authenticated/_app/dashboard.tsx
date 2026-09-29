@@ -27,8 +27,8 @@ function Dashboard() {
         supabase.from("facilities").select("id, name, facility_type, within_boundary, headcount, city, country").eq("organization_id", id).order("created_at"),
         supabase.from("emission_calculations").select("scope, co2e_kg").eq("organization_id", id),
       ]);
-      const totals = { scope_1: 0, scope_2: 0, scope_3: 0 } as Record<string, number>;
-      (calc.data ?? []).forEach((c) => (totals[c.scope] += Number(c.co2e_kg)));
+      const totals = { scope_1: 0, scope_2: 0, scope_3: 0 };
+      (calc.data ?? []).forEach((c) => (totals[c.scope as keyof typeof totals] += Number(c.co2e_kg)));
       return {
         facilities: fac.count ?? 0, departments: dep.count ?? 0, members: mem.count ?? 0,
         activity: act.count ?? 0, periods: per.count ?? 0, facilityList: facs.data ?? [], totals,
@@ -38,7 +38,7 @@ function Dashboard() {
   });
 
   const d = q.data;
-  const steps: { done: boolean; label: string; to: LinkProps["to"] }[] = [
+  const steps: { done: boolean; label: string; to: NonNullable<LinkProps["to"]> }[] = [
     { done: true, label: "Create organization", to: "/organization" },
     { done: (d?.facilities ?? 0) > 0, label: "Add facilities & boundary", to: "/facilities" },
     { done: (d?.departments ?? 0) > 0, label: "Add departments", to: "/departments" },

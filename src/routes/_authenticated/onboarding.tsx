@@ -32,7 +32,7 @@ function Onboarding() {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!industry) return toast.error("Select an industry");
+    if (!industry) { toast.error("Select an industry"); return; }
     setBusy(true);
     const { data, error } = await supabase.rpc("create_organization", {
       _name: name.trim(),
@@ -40,7 +40,7 @@ function Onboarding() {
       _country: country.trim(),
     });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     localStorage.setItem("carbon.activeOrg", data as string);
     await qc.invalidateQueries({ queryKey: ["memberships"] });
     toast.success("Organization created. Add your first facility next.");

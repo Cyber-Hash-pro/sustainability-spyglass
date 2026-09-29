@@ -41,7 +41,7 @@ function Users() {
   async function add(e: React.FormEvent) {
     e.preventDefault();
     const { error } = await supabase.rpc("add_member_by_email", { _org: orgId!, _email: email, _role: role });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Member added"); setEmail(""); refresh();
   }
   async function changeRole(id: string, r: OrgRole) {

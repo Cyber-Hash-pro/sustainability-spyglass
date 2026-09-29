@@ -28,7 +28,7 @@ function AppLayout() {
   );
 }
 
-type NavItem = { to: LinkProps["to"]; label: string; icon: typeof LayoutDashboard; perm?: Permission };
+type NavItem = { to: NonNullable<LinkProps["to"]>; label: string; icon: typeof LayoutDashboard; perm?: Permission };
 const NAV: { group: string; items: NavItem[] }[] = [
   { group: "Overview", items: [{ to: "/dashboard", label: "Executive dashboard", icon: LayoutDashboard }] },
   {
