@@ -74,7 +74,7 @@ function Landing() {
   );
 }
 
-export function Logo({ className = "" }: { className?: string }) {
+function Logo({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       <div className="grid h-8 w-8 place-items-center rounded-md bg-sidebar-primary font-display text-lg font-semibold text-sidebar-primary-foreground">

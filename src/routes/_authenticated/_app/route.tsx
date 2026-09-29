@@ -1,4 +1,4 @@
-import { createFileRoute, Link, Navigate, Outlet, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, type LinkProps, Navigate, Outlet, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import {
@@ -28,7 +28,7 @@ function AppLayout() {
   );
 }
 
-type NavItem = { to: string; label: string; icon: typeof LayoutDashboard; perm?: Permission };
+type NavItem = { to: LinkProps["to"]; label: string; icon: typeof LayoutDashboard; perm?: Permission };
 const NAV: { group: string; items: NavItem[] }[] = [
   { group: "Overview", items: [{ to: "/dashboard", label: "Executive dashboard", icon: LayoutDashboard }] },
   {

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, type LinkProps } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowUpRight, Factory, Sparkles, CheckCircle2, Circle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -38,7 +38,7 @@ function Dashboard() {
   });
 
   const d = q.data;
-  const steps = [
+  const steps: { done: boolean; label: string; to: LinkProps["to"] }[] = [
     { done: true, label: "Create organization", to: "/organization" },
     { done: (d?.facilities ?? 0) > 0, label: "Add facilities & boundary", to: "/facilities" },
     { done: (d?.departments ?? 0) > 0, label: "Add departments", to: "/departments" },

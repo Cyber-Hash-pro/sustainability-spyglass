@@ -6,20 +6,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { INDUSTRIES } from "@/lib/constants";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-export const INDUSTRIES = [
-  "Manufacturing",
-  "Technology & Software",
-  "Financial Services",
-  "Retail & Consumer",
-  "Logistics & Transport",
-  "Energy & Utilities",
-  "Healthcare",
-  "Real Estate",
-  "Education",
-  "Other",
-];
 
 export const Route = createFileRoute("/_authenticated/onboarding")({
   head: () => ({

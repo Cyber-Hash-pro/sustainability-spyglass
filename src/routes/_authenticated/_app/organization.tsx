@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { INDUSTRIES } from "../onboarding";
+import { INDUSTRIES } from "@/lib/constants";
 
 export const Route = createFileRoute("/_authenticated/_app/organization")({
   head: () => appHead("Organization profile", "Organization details and reporting boundary."),
