@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1790703247668,
+      "tag": "0000_foundation_tenancy_rbac_domain",
+      "breakpoints": true
+    }
+  ]
 }
