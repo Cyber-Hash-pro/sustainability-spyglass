@@ -7,6 +7,8 @@ import { lovable } from "@/integrations/lovable/index";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { INDUSTRIES } from "@/lib/constants";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const search = z.object({ mode: z.enum(["login", "register", "forgot"]).optional() });
 
@@ -30,6 +32,9 @@ function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [organizationName, setOrganizationName] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [country, setCountry] = useState("");
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -44,13 +49,25 @@ function AuthPage() {
     setBusy(true);
     try {
       if (mode === "register") {
+        if (!industry) {
+          toast.error("Select an industry");
+          return;
+        }
         const { error } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: `${window.location.origin}/dashboard`, data: { full_name: name } },
+          options: {
+            emailRedirectTo: `${window.location.origin}/dashboard`,
+            data: {
+              full_name: name,
+              organization_name: organizationName.trim(),
+              organization_industry: industry,
+              organization_country: country.trim(),
+            },
+          },
         });
         if (error) throw error;
-        toast.success("Check your inbox to verify your email.");
+        toast.success("Your account and organization are set up. Check your inbox to verify your email.");
       } else if (mode === "forgot") {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
           redirectTo: `${window.location.origin}/reset-password`,
@@ -95,10 +112,30 @@ function AuthPage() {
         <form onSubmit={submit} className="w-full max-w-sm space-y-5">
           <h1 className="text-3xl">{title}</h1>
           {mode === "register" && (
-            <div className="space-y-2">
-              <Label htmlFor="name">Full name</Label>
-              <Input id="name" value={name} onChange={(e) => setName(e.target.value)} required />
-            </div>
+            <>
+              <div className="space-y-2">
+                <Label htmlFor="name">Full name</Label>
+                <Input id="name" value={name} onChange={(e) => setName(e.target.value)} required autoComplete="name" />
+              </div>
+              <div className="border-t border-border pt-4">
+                <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">Organization</p>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="organization-name">Organization name</Label>
+                <Input id="organization-name" value={organizationName} onChange={(e) => setOrganizationName(e.target.value)} required maxLength={120} autoComplete="organization" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="organization-industry">Industry</Label>
+                <Select value={industry} onValueChange={setIndustry}>
+                  <SelectTrigger id="organization-industry"><SelectValue placeholder="Select industry" /></SelectTrigger>
+                  <SelectContent>{INDUSTRIES.map((item) => <SelectItem key={item} value={item}>{item}</SelectItem>)}</SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="organization-country">Headquarters country</Label>
+                <Input id="organization-country" value={country} onChange={(e) => setCountry(e.target.value)} required maxLength={80} autoComplete="country-name" />
+              </div>
+            </>
           )}
           <div className="space-y-2">
             <Label htmlFor="email">Work email</Label>

@@ -16,3 +16,4 @@
 - Audit: DB trigger `audit_trigger` writes `audit_logs` on org-owned tables; clients have SELECT only. Why: tamper-resistant trail.
 - Emission factors are versioned (`emission_factor_versions`); calculations reference a version id. Why: reproducible, explainable results.
 - App shell lives at `src/routes/_authenticated/_app/route.tsx` with `OrgProvider` (active org stored in localStorage as UI preference only).
+- Public email signup provisions only the submitting user's organization-admin membership from validated signup metadata in the auth trigger; Super Admin remains a separately granted platform role. Why: create tenant setup at registration without allowing public role escalation.
