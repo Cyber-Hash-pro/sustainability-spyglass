@@ -67,7 +67,7 @@ function AuthPage() {
           },
         });
         if (error) throw error;
-        toast.success("Check your inbox to verify your email.");
+        toast.success("Your account and organization are set up. Check your inbox to verify your email.");
       } else if (mode === "forgot") {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
           redirectTo: `${window.location.origin}/reset-password`,

@@ -15,6 +15,13 @@
       "when": 1790703288573,
       "tag": "0001_add_member_by_email",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790736679151,
+      "tag": "0002_provision_organization_on_signup",
+      "breakpoints": true
     }
   ]
 }
