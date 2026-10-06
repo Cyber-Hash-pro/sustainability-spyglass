@@ -97,7 +97,12 @@ function AuthPage() {
   return (
     <div className="grid min-h-screen md:grid-cols-2">
       <div className="hidden flex-col justify-between bg-sidebar p-10 text-sidebar-foreground md:flex">
-        <Link to="/" className="font-display text-lg">Verdant Ledger</Link>
+        <Link to="/" className="flex items-center gap-2 font-display text-lg">
+          <div className="grid h-8 w-8 place-items-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-leaf"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+          </div>
+          Verdant Ledger
+        </Link>
         <blockquote className="max-w-md">
           <p className="font-display text-3xl leading-tight">
             "What gets measured, traced and audited gets reduced."

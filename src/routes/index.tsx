@@ -74,11 +74,13 @@ function Landing() {
   );
 }
 
+import { Leaf } from "lucide-react";
+
 function Logo({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center gap-2 ${className}`}>
-      <div className="grid h-8 w-8 place-items-center rounded-md bg-sidebar-primary font-display text-lg font-semibold text-sidebar-primary-foreground">
-        V
+      <div className="grid h-8 w-8 place-items-center rounded-md bg-sidebar-primary font-display text-sidebar-primary-foreground">
+        <Leaf className="h-5 w-5" />
       </div>
       <span className="font-display text-lg">Verdant Ledger</span>
     </div>
