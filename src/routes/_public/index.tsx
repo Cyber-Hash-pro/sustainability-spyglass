@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Building2, ShieldCheck, Sparkles, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_public/")({
   head: () => ({
     meta: [
       { title: "Verdant Ledger — Corporate Carbon Footprint Intelligence" },
@@ -23,18 +23,7 @@ export const Route = createFileRoute("/")({
 
 function Landing() {
   return (
-    <div className="min-h-screen bg-sidebar text-sidebar-foreground">
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-        <Logo />
-        <div className="flex gap-2">
-          <Button asChild variant="ghost" className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
-            <Link to="/auth">Sign in</Link>
-          </Button>
-          <Button asChild className="bg-sidebar-primary text-sidebar-primary-foreground hover:bg-sidebar-primary/90">
-            <Link to="/auth" search={{ mode: "register" }}>Get started</Link>
-          </Button>
-        </div>
-      </header>
+    <div className="flex-1 bg-sidebar text-sidebar-foreground">
 
       <section className="mx-auto max-w-6xl px-6 pb-24 pt-16">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-sidebar-primary">
