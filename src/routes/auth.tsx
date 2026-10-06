@@ -157,8 +157,58 @@ function AuthPage() {
           <Button type="submit" className="w-full" disabled={busy}>
             {mode === "register" ? "Create account" : mode === "forgot" ? "Send reset link" : "Sign in"}
           </Button>
+
+          {mode === "login" && (
+            <div className="pt-4 border-t border-border mt-4">
+              <p className="text-xs text-center text-muted-foreground mb-3">Presentation Quick Login</p>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => { setEmail("superadmin@demo.com"); setPassword("DemoPassword123!"); }}
+                >
+                  Super Admin
+                </Button>
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => { setEmail("orgadmin@demo.com"); setPassword("DemoPassword123!"); }}
+                >
+                  Org Admin
+                </Button>
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => { setEmail("esgmanager@demo.com"); setPassword("DemoPassword123!"); }}
+                >
+                  ESG Manager
+                </Button>
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => { setEmail("datacontributor@demo.com"); setPassword("DemoPassword123!"); }}
+                >
+                  Data Contrib.
+                </Button>
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  className="col-span-2"
+                  size="sm"
+                  onClick={() => { setEmail("auditor@demo.com"); setPassword("DemoPassword123!"); }}
+                >
+                  Auditor
+                </Button>
+              </div>
+            </div>
+          )}
+
           {mode !== "forgot" && (
-            <Button type="button" variant="outline" className="w-full" onClick={google}>
+            <Button type="button" variant="outline" className="w-full mt-4" onClick={google}>
               Continue with Google
             </Button>
           )}
