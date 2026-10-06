@@ -171,7 +171,7 @@ function AuthPage() {
                   type="button" 
                   variant="outline" 
                   size="sm"
-                  onClick={() => { setEmail("superadmin@demo.com"); setPassword("Verdant@Demo2026!"); }}
+                  onClick={() => { setEmail("cyberhashpro+superadmin@gmail.com"); setPassword("Verdant@Demo2026!"); }}
                 >
                   Super Admin
                 </Button>
@@ -179,7 +179,7 @@ function AuthPage() {
                   type="button" 
                   variant="outline" 
                   size="sm"
-                  onClick={() => { setEmail("orgadmin@demo.com"); setPassword("Verdant@Demo2026!"); }}
+                  onClick={() => { setEmail("cyberhashpro+orgadmin@gmail.com"); setPassword("Verdant@Demo2026!"); }}
                 >
                   Org Admin
                 </Button>
@@ -187,7 +187,7 @@ function AuthPage() {
                   type="button" 
                   variant="outline" 
                   size="sm"
-                  onClick={() => { setEmail("esgmanager@demo.com"); setPassword("Verdant@Demo2026!"); }}
+                  onClick={() => { setEmail("cyberhashpro+esgmanager@gmail.com"); setPassword("Verdant@Demo2026!"); }}
                 >
                   ESG Manager
                 </Button>
@@ -195,7 +195,7 @@ function AuthPage() {
                   type="button" 
                   variant="outline" 
                   size="sm"
-                  onClick={() => { setEmail("datacontributor@demo.com"); setPassword("Verdant@Demo2026!"); }}
+                  onClick={() => { setEmail("cyberhashpro+datacontributor@gmail.com"); setPassword("Verdant@Demo2026!"); }}
                 >
                   Data Contrib.
                 </Button>
@@ -204,7 +204,7 @@ function AuthPage() {
                   variant="outline" 
                   className="col-span-2"
                   size="sm"
-                  onClick={() => { setEmail("auditor@demo.com"); setPassword("Verdant@Demo2026!"); }}
+                  onClick={() => { setEmail("cyberhashpro+auditor@gmail.com"); setPassword("Verdant@Demo2026!"); }}
                 >
                   Auditor
                 </Button>
