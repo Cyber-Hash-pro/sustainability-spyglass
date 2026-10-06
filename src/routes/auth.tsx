@@ -48,13 +48,21 @@ function AuthPage() {
     e.preventDefault();
     setBusy(true);
     try {
+      // Presentation trick: Map professional UI emails to real verified emails for backend
+      let actualEmail = email;
+      if (email === "superadmin@verdantledger.com") actualEmail = "cyberhashpro+superadmin@gmail.com";
+      else if (email === "orgadmin@verdantledger.com") actualEmail = "cyberhashpro+orgadmin@gmail.com";
+      else if (email === "esgmanager@verdantledger.com") actualEmail = "cyberhashpro+esgmanager@gmail.com";
+      else if (email === "datacontributor@verdantledger.com") actualEmail = "cyberhashpro+datacontributor@gmail.com";
+      else if (email === "auditor@verdantledger.com") actualEmail = "cyberhashpro+auditor@gmail.com";
+
       if (mode === "register") {
         if (!industry) {
           toast.error("Select an industry");
           return;
         }
         const { error } = await supabase.auth.signUp({
-          email,
+          email: actualEmail,
           password,
           options: {
             emailRedirectTo: `${window.location.origin}/dashboard`,
@@ -69,13 +77,13 @@ function AuthPage() {
         if (error) throw error;
         toast.success("Your account and organization are set up. Check your inbox to verify your email.");
       } else if (mode === "forgot") {
-        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        const { error } = await supabase.auth.resetPasswordForEmail(actualEmail, {
           redirectTo: `${window.location.origin}/reset-password`,
         });
         if (error) throw error;
         toast.success("Password reset link sent.");
       } else {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        const { error } = await supabase.auth.signInWithPassword({ email: actualEmail, password });
         if (error) throw error;
         navigate({ to: "/dashboard", replace: true });
       }
@@ -171,7 +179,7 @@ function AuthPage() {
                   type="button" 
                   variant="outline" 
                   size="sm"
-                  onClick={() => { setEmail("cyberhashpro+superadmin@gmail.com"); setPassword("Verdant@Demo2026!"); }}
+                  onClick={() => { setEmail("superadmin@verdantledger.com"); setPassword("Verdant@Demo2026!"); }}
                 >
                   Super Admin
                 </Button>
@@ -179,7 +187,7 @@ function AuthPage() {
                   type="button" 
                   variant="outline" 
                   size="sm"
-                  onClick={() => { setEmail("cyberhashpro+orgadmin@gmail.com"); setPassword("Verdant@Demo2026!"); }}
+                  onClick={() => { setEmail("orgadmin@verdantledger.com"); setPassword("Verdant@Demo2026!"); }}
                 >
                   Org Admin
                 </Button>
@@ -187,7 +195,7 @@ function AuthPage() {
                   type="button" 
                   variant="outline" 
                   size="sm"
-                  onClick={() => { setEmail("cyberhashpro+esgmanager@gmail.com"); setPassword("Verdant@Demo2026!"); }}
+                  onClick={() => { setEmail("esgmanager@verdantledger.com"); setPassword("Verdant@Demo2026!"); }}
                 >
                   ESG Manager
                 </Button>
@@ -195,7 +203,7 @@ function AuthPage() {
                   type="button" 
                   variant="outline" 
                   size="sm"
-                  onClick={() => { setEmail("cyberhashpro+datacontributor@gmail.com"); setPassword("Verdant@Demo2026!"); }}
+                  onClick={() => { setEmail("datacontributor@verdantledger.com"); setPassword("Verdant@Demo2026!"); }}
                 >
                   Data Contrib.
                 </Button>
@@ -204,7 +212,7 @@ function AuthPage() {
                   variant="outline" 
                   className="col-span-2"
                   size="sm"
-                  onClick={() => { setEmail("cyberhashpro+auditor@gmail.com"); setPassword("Verdant@Demo2026!"); }}
+                  onClick={() => { setEmail("auditor@verdantledger.com"); setPassword("Verdant@Demo2026!"); }}
                 >
                   Auditor
                 </Button>
